@@ -51,7 +51,10 @@ class BitSet {
   growToInclude(int bit) {
     int newSize = math.max(bits.length << 1, _numWordsToHold(bit));
     List<int> newbits = new List<int>(newSize);
-    Arrays.copy(bits, 0, newbits, 0, bits.length);
+    //Arrays.copy(bits, 0, newbits, 0, bits.length);
+    for (int i = 0; i < bits.length; i++) {
+      newbits.bits[i] = bits [i];
+    }
     bits = newbits;
   }
 
@@ -71,16 +74,20 @@ class BitSet {
   _setSize(int nwords) {
     List<int> newbits = new List<int>(nwords);
     int n = math.min(nwords, bits.length);
-    Arrays.copy(bits, 0, newbits, 0, n);
-    for(int i = bits.length; i < newbits.length; i++)
+    //Arrays.copy(bits, 0, newbits, 0, n);
+    for(int i = bits.length; i < newbits.length; i++) {
       newbits[i] = 0;
+    }
     bits = newbits;
   } 
 
   clone() {
     BitSet s = new BitSet();    
     s.bits = new List<int>(bits.length);
-    Arrays.copy(bits, 0, s.bits, 0, bits.length);  
+    //Arrays.copy(bits, 0, s.bits, 0, bits.length);  
+    for (int i = 0; i < bits.length; i++) {
+      s.bits[i] = bits [i];
+    }
     return s;
   }
 

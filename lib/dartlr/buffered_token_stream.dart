@@ -207,7 +207,7 @@ class BufferedTokenStream implements TokenStream {
     for (int i = start; i <= stop; i++) {
       Token t = _tokens[i];
       if (t.type == Token.EOF ) break;
-      buf.add(t.text);
+      buf.write(t.text);
     }
     return buf.toString();
   }
